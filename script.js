@@ -1,13 +1,13 @@
 console.log("Hello, World");
 
-//Wirte the logic to get the computer choice 
+//rite the logic to get the computer choice 
 function getComputerChoice(choice) {
   if (choice === 1){
-    console.log("rock");
+    return "Rock";
   }else if (choice === 2){
-    console.log("paper");
+    return "Paper";
   }else if (choice === 3){
-    console.log("scissor");
+    return "Scissor";
   }
 }
 
@@ -16,5 +16,11 @@ function randomNumber() {
   return random1
 }
 let random = randomNumber();
-// console.log(getComputerChoice(Math.random(random)))
-console.log(getComputerChoice(random));
+console.log("Computer answer: " + getComputerChoice(random));
+
+// Write the logic to get human choice
+function getHumanChoice() {
+  choice = prompt("Choose one Rock, Paper, or Scissor? ");
+  return choice;
+}
+console.log("Your answer: " + getHumanChoice());
