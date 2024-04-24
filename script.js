@@ -1,5 +1,3 @@
-// console.log("Hello, World");
-
 //rite the logic to get the computer choice 
 function getComputerChoice(choice) {
   let random1 = Math.floor(Math.random() * 3) + 1;
@@ -20,47 +18,65 @@ function getHumanChoice() {
   choice = choice.toLowerCase();
   return choice;
 }
-let itsHumanChoice = getHumanChoice();
-let itsComputerChoice = getComputerChoice();
 
-console.log("Your answer: " + itsHumanChoice.charAt(0).toUpperCase() + itsHumanChoice.slice(1));
-console.log("Computer answer: " + itsComputerChoice.charAt(0).toUpperCase() + itsComputerChoice.slice(1));
-//alert("Computer answer: " + getComputerChoice());
+//Write the logic to play single round
+function playRound (humanChoice, computerChoice) {
+  if (humanChoice === "rock" && computerChoice === "paper") {
+    // computerScore++;
+    return {str1:"You Lose! Paper beats Rock", str2:"You Lose!"};
+  }else if (humanChoice === "paper" && computerChoice === "scissor") {
+    // computerScore++;
+    return {str1:"You Lose! Scissor beat Paper", str2:"You Lose!"};
+  }else if (humanChoice === "scissor" && computerChoice === "rock") {
+    // computerScore++;
+    return {str1:"You Lose! Rock beats Scissor", str2:"You Lose!"};
+  }else if (humanChoice === "rock" && computerChoice === "scissor") {
+    // humanScore++;
+    return {str1:"You win! Rock beats Scissor", str2:"You win!"};
+  }else if (humanChoice === "paper" && computerChoice === "rock") {
+    // humanScore++;
+    return {str1:"You win! Paper beats Rock", str2:"You win!"};
+  }else if (humanChoice === "scissor" && computerChoice === "paper") {
+    // humanScore++;
+    return {str1:"You win! Scissor beat Paper", str2:"You win!"} ;
+  }else if (humanChoice === computerChoice) {
+    return {str1:"Its a Draw!"};
+  }
+}
 
 //Declare the player score variable
 let humanScore = 0;
 let computerScore = 0;
 
-//Write the logic to play single round
-function playRound(humanChoice, computerChoice) {
-  if (humanChoice === "rock" && computerChoice === "paper") {
-    computerScore++
-    return "You Lose! Paper beats Rock";
-  }else if (humanChoice === "paper" && computerChoice === "scissor") {
-    computerScore++
-    return "You Lose! Scissor beat Paper";
-  }else if (humanChoice === "scissor" && computerChoice === "Rock") {
-    computerScore++
-    return "You Lose! Rock beats Scissor";
-  }if (humanChoice === "rock" && computerChoice === "scissor") {
-    humanScore++
-    return "You win! Rock beats Scissor";
-  }if (humanChoice === "paper" && computerChoice === "sock") {
-    humanScore++
-    return "You win! Paper beats Rock";
-  }if (humanChoice === "scissor" && computerChoice === "paper") {
-    humanScore++
-    return "You win! Scissor beat Paper" ;
-  }else if (humanChoice === computerChoice) {
-    return "Its a Draw!";
-  }
-}
-console.log(playRound(itsHumanChoice, itsComputerChoice));
-console.log("Computer Score: " + computerScore);
-console.log("Your Score: " + humanScore);
-
 // Write the logic to play the entire game
-
 function playGame() {
-  
+    let itsHumanChoice = getHumanChoice();
+    let itsComputerChoice = getComputerChoice();
+    let result = playRound(itsHumanChoice, itsComputerChoice);
+    let i = 0; 
+    
+    console.log("Round " + (i + 1) + ": " + result.str1 );
+    console.log("Your Answer: " + itsHumanChoice.charAt(0).toUpperCase() + itsHumanChoice.slice(1));
+    console.log("Computer Answer: " + itsComputerChoice.charAt(0).toUpperCase() + itsComputerChoice.slice(1));
+    
+    if (result.str2 === "You win!") {
+      humanScore++;
+    }else if (result.str2 === "You Lose!"){
+      computerScore++;
+    }
+    console.log("Your Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+    
+}
+
+for (let i = 0; i < 5; i++) {
+  playGame();
+}
+
+if (humanScore > computerScore) {
+  console.log("You win the game!");
+}else if (humanScore < computerScore){
+  console.log("You Lose the game!")
+}else {
+  console.log("Its a tie!")
 }
