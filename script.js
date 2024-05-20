@@ -69,12 +69,12 @@ function playGame() {
 }
 
 // for (let i = 1; i <= 5; i++) {
-  // let itsHumanChoice = getHumanChoice();
-  // let itsComputerChoice = getComputerChoice();
-  // let result = playRound(itsHumanChoice, itsComputerChoice);
-  // console.log("Round " + (i) + ": " + result.str1 );
+//   let itsHumanChoice = getHumanChoice();
+//   let itsComputerChoice = getComputerChoice();
+//   let result = playRound(itsHumanChoice, itsComputerChoice);
+//   console.log("Round " + (i) + ": " + result.str1 );
   
-  // playGame();
+//   playGame();
 // }
 
 // if (humanScore > computerScore) {
@@ -91,19 +91,19 @@ const computerSelection = document.querySelector('.computer');
 const playerSelection = document.querySelector('.player');
 const play = document.querySelector('.play');
 
-computerSelection.addEventListener('click', () => {
-  let ComputerChoice = getComputerChoice();
-  const computer = document.createElement('p');
-  computer.textContent = "computer: " + `${ComputerChoice}`;
-  parentDiv.appendChild(computer);
-});
+// computerSelection.addEventListener('click', () => {
+//   let computerChoice = getComputerChoice();
+//   const computer = document.createElement('p');
+//   computer.textContent = "computer: " + `${computerChoice}`;
+//   parentDiv.appendChild(computer);
+// });
 
-playerSelection.addEventListener('click', () => {
-  let playerChoice = getHumanChoice();
-  const player = document.createElement('p');
-  player.textContent = "player: " + `${playerChoice}`;
-  parentDiv.appendChild(player);
-});
+// playerSelection.addEventListener('click', () => {
+//   let playerChoice = getComputerChoice();
+//   const player = document.createElement('p');
+//   player.textContent = "player: " + `${playerChoice}`;
+//   parentDiv.appendChild(player);
+// });
 
 //Play one round
 play.addEventListener('click', () => {
@@ -135,6 +135,22 @@ play.addEventListener('click', () => {
     
     const computerResult = document.createElement('p');
     computerResult.textContent =  "computer: " + `${itsComputerChoice}`;
+    
+    parentDiv.appendChild(resultPlay);
+    parentDiv.appendChild(computerResult);
+    
+    const deletePara = document.createElement('button');
+    deletePara.textContent = "delete";
+    parentDiv.appendChild(deletePara);
+    deletePara.addEventListener('click', () => {
+      parentDiv.removeChild(resultPlay);
+      parentDiv.removeChild(computerResult);
+      parentDiv.removeChild(deletePara);
+    });
+  }else{
+    console.log(result);
+    const resultPlay = document.createElement('p');
+    resultPlay.textContent = "Its a Draw! " + `${itsComputerChoice}`;
     
     parentDiv.appendChild(resultPlay);
     parentDiv.appendChild(computerResult);
