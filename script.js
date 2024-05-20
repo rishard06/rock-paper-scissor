@@ -15,8 +15,7 @@ function getComputerChoice(choice) {
 // Write the logic to get human choice
 function getHumanChoice() {
   let choice = prompt("Choose one Rock, Paper, or Scissor? ");
-  choice = choice.toLowerCase();
-  return choice;
+  return choice.toLowerCase();
 }
 
 //Write the logic to play single round
@@ -53,7 +52,7 @@ function playGame() {
     let itsHumanChoice = getHumanChoice();
     let itsComputerChoice = getComputerChoice();
     let result = playRound(itsHumanChoice, itsComputerChoice);
-    let i = 0; 
+    let i = 0;
     
     console.log("Round " + (i + 1) + ": " + result.str1 );
     console.log("Your Answer: " + itsHumanChoice.charAt(0).toUpperCase() + itsHumanChoice.slice(1));
@@ -69,14 +68,84 @@ function playGame() {
     
 }
 
-for (let i = 0; i < 5; i++) {
-  playGame();
-}
+// for (let i = 1; i <= 5; i++) {
+  // let itsHumanChoice = getHumanChoice();
+  // let itsComputerChoice = getComputerChoice();
+  // let result = playRound(itsHumanChoice, itsComputerChoice);
+  // console.log("Round " + (i) + ": " + result.str1 );
+  
+  // playGame();
+// }
 
-if (humanScore > computerScore) {
-  console.log("You win the game!");
-}else if (humanScore < computerScore){
-  console.log("You Lose the game!")
-}else {
-  console.log("Its a tie!")
-}
+// if (humanScore > computerScore) {
+//   console.log("You win the game!");
+// }else if (humanScore < computerScore){
+//   console.log("You Lose the game!");
+// }else {
+//   console.log("Its a tie!");
+// }
+
+
+const parentDiv = document.querySelector('.parent');
+const computerSelection = document.querySelector('.computer');
+const playerSelection = document.querySelector('.player');
+const play = document.querySelector('.play');
+
+computerSelection.addEventListener('click', () => {
+  let ComputerChoice = getComputerChoice();
+  const computer = document.createElement('p');
+  computer.textContent = "computer: " + `${ComputerChoice}`;
+  parentDiv.appendChild(computer);
+});
+
+playerSelection.addEventListener('click', () => {
+  let playerChoice = getHumanChoice();
+  const player = document.createElement('p');
+  player.textContent = "player: " + `${playerChoice}`;
+  parentDiv.appendChild(player);
+});
+
+//Play one round
+play.addEventListener('click', () => {
+  let itsHumanChoice = getHumanChoice();
+  let itsComputerChoice = getComputerChoice();
+  let result = playRound(itsHumanChoice, itsComputerChoice);
+  
+  if (result.str2 === "You win!"){
+    const resultPlay = document.createElement('p');
+    resultPlay.textContent = `${result.str1}`;
+    
+    const computerResult = document.createElement('p');
+    computerResult.textContent =  "computer: " + `${itsComputerChoice}`;
+    
+    parentDiv.appendChild(resultPlay);
+    parentDiv.appendChild(computerResult);
+    
+    const deletePara = document.createElement('button');
+    deletePara.textContent = "delete";
+    parentDiv.appendChild(deletePara);
+    deletePara.addEventListener('click', () => {
+      parentDiv.removeChild(resultPlay);
+      parentDiv.removeChild(computerResult);
+      parentDiv.removeChild(deletePara);
+    });
+  }else if (result.str2 === "You Lose!"){
+    const resultPlay = document.createElement('p');
+    resultPlay.textContent = `${result.str1}`;
+    
+    const computerResult = document.createElement('p');
+    computerResult.textContent =  "computer: " + `${itsComputerChoice}`;
+    
+    parentDiv.appendChild(resultPlay);
+    parentDiv.appendChild(computerResult);
+    
+    const deletePara = document.createElement('button');
+    deletePara.textContent = "delete";
+    parentDiv.appendChild(deletePara);
+    deletePara.addEventListener('click', () => {
+      parentDiv.removeChild(resultPlay);
+      parentDiv.removeChild(computerResult);
+      parentDiv.removeChild(deletePara);
+    });
+  }
+});
