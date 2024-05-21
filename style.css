@@ -1,0 +1,33 @@
+div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  margin: auto;
+}
+button {
+  padding: 5px;
+  margin: 5px;
+}
+
+p {
+  align-self: center;
+}
+
+.playAround {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+button .play {
+  padding: 5px;
+  margin: 5px;
+}
+
+.insideParent {
+  width: 200px;
+  border: 2px solid black;
+  margin-bottom: 5px;
+}

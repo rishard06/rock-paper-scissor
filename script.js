@@ -90,6 +90,7 @@ const parentDiv = document.querySelector('.parent');
 const computerSelection = document.querySelector('.computer');
 const playerSelection = document.querySelector('.player');
 const play = document.querySelector('.play');
+const playAround = document.querySelector('.playAround');
 
 // computerSelection.addEventListener('click', () => {
 //   let computerChoice = getComputerChoice();
@@ -112,56 +113,68 @@ play.addEventListener('click', () => {
   let result = playRound(itsHumanChoice, itsComputerChoice);
   
   if (result.str2 === "You win!"){
+    const div = document.createElement('div');
+    div.classList.add('insideParent');
+    
     const resultPlay = document.createElement('p');
     resultPlay.textContent = `${result.str1}`;
     
     const computerResult = document.createElement('p');
     computerResult.textContent =  "computer: " + `${itsComputerChoice}`;
     
-    parentDiv.appendChild(resultPlay);
-    parentDiv.appendChild(computerResult);
+    playAround.appendChild(div);
+    div.appendChild(resultPlay);
+    div.appendChild(computerResult);
     
     const deletePara = document.createElement('button');
     deletePara.textContent = "delete";
-    parentDiv.appendChild(deletePara);
+    div.appendChild(deletePara);
     deletePara.addEventListener('click', () => {
-      parentDiv.removeChild(resultPlay);
-      parentDiv.removeChild(computerResult);
-      parentDiv.removeChild(deletePara);
+      div.removeChild(resultPlay);
+      div.removeChild(computerResult);
+      div.removeChild(deletePara);
+      playAround.removeChild(div);
     });
   }else if (result.str2 === "You Lose!"){
+    const div = document.createElement('div');
+    div.classList.add('insideParent');
+    
     const resultPlay = document.createElement('p');
     resultPlay.textContent = `${result.str1}`;
     
     const computerResult = document.createElement('p');
     computerResult.textContent =  "computer: " + `${itsComputerChoice}`;
     
-    parentDiv.appendChild(resultPlay);
-    parentDiv.appendChild(computerResult);
+    playAround.appendChild(div);
+    div.appendChild(resultPlay);
+    div.appendChild(computerResult);
     
     const deletePara = document.createElement('button');
     deletePara.textContent = "delete";
-    parentDiv.appendChild(deletePara);
+    div.appendChild(deletePara);
     deletePara.addEventListener('click', () => {
-      parentDiv.removeChild(resultPlay);
-      parentDiv.removeChild(computerResult);
-      parentDiv.removeChild(deletePara);
+      div.removeChild(resultPlay);
+      div.removeChild(computerResult);
+      div.removeChild(deletePara);
+      playAround.removeChild(div);
     });
   }else{
-    console.log(result);
+    const div = document.createElement('div');
+    div.classList.add('insideParent');
+    
     const resultPlay = document.createElement('p');
     resultPlay.textContent = "Its a Draw! " + `${itsComputerChoice}`;
     
-    parentDiv.appendChild(resultPlay);
-    parentDiv.appendChild(computerResult);
+    playAround.appendChild(div);
+    div.appendChild(resultPlay);
     
     const deletePara = document.createElement('button');
     deletePara.textContent = "delete";
-    parentDiv.appendChild(deletePara);
+    div.appendChild(deletePara);
     deletePara.addEventListener('click', () => {
-      parentDiv.removeChild(resultPlay);
-      parentDiv.removeChild(computerResult);
-      parentDiv.removeChild(deletePara);
+      div.removeChild(resultPlay);
+      div.removeChild(deletePara);
+      playAround.removeChild(div);
     });
   }
 });
